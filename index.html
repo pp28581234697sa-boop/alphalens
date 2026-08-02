@@ -1,0 +1,61 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AlphaLens Pro</title><link rel="stylesheet" href="styles.css?v=11.1.0"></head><body>
+<div id="toast"></div><header><div class="brand">AlphaLens <b>PRO</b><span class="version-badge">v11.1</span><span id="backendStatus" class="backend-status checking">後端檢查中</span></div><div class="markets"><button data-market="TW">台股</button><button data-market="CN">A 股</button><button class="active" data-market="US">美股</button></div><div class="search"><div class="search-bar"><input id="searchInput" placeholder="輸入代號、中文或英文公司名稱"><button id="searchBtn" type="button" aria-label="搜尋股票">搜尋</button></div><div id="results" class="results hidden"></div></div></header>
+<main><section class="hero"><div><h1 id="stockName">Apple</h1><p><span id="stockSymbol">AAPL</span> · <span id="exchange">NASDAQ</span> · <span id="source">載入中</span></p></div><div class="price"><strong id="price">--</strong><span id="change">--</span><button id="refreshQuote" type="button">↻ 立即更新</button><small id="lastUpdated">尚未更新</small></div></section>
+<section class="grid"><article class="card chart">
+<div class="card-head"><h2>專業 K 線</h2><div class="chart-controls"><div id="ranges"><button>1D</button><button>5D</button><button class="active">1M</button><button>6M</button><button>1Y</button><button>5Y</button></div></div></div>
+<div id="nativeChartWrap"><canvas id="nativeChart"></canvas><div id="chartStatus">載入 K 線中…</div></div>
+<div id="tvChart" class="hidden"></div>
+<div class="chart-note" id="chartNote">內建 K 線使用目前可取得的行情來源；台股與 A 股可避免 TradingView 商品不存在問題。</div>
+</article>
+<aside class="fundamental-aside">
+<article class="card fundamental-score-card">
+<div class="card-head"><div><h2>基本面評分</h2><small id="fundSource">資料載入中</small></div><button id="refreshFundamentals" type="button">↻ 更新基本面</button></div>
+<div class="fundamental-score-layout">
+ <div id="fundDonut" class="fund-donut" style="--score:0"><div><strong id="score">--</strong><span id="rating">資料不足</span><small id="coverage">覆蓋率 --</small></div></div>
+ <div id="subScores" class="sub-scores"></div>
+</div>
+<p id="scoreText" class="score-summary">載入中</p>
+</article>
+<article class="card"><div class="card-head"><h2>關鍵指標</h2><span id="fundUpdatedAt">--</span></div><div id="metrics" class="metrics metrics-expanded"></div></article>
+<article class="card ai-judgement-card"><div class="card-head"><h2>AI 判斷</h2><button id="refreshAiJudgement" type="button">↻ 重新判斷</button></div><div id="aiJudgement"><p>基本面載入後自動產生判斷。</p></div></article>
+</aside></section>
+<section class="company-profile card company-hub" id="companyProfileCard">
+<div class="company-hero">
+<div class="company-identity"><div id="companyBrandVisual" class="company-brand-visual"><img id="companyLogo" class="company-logo hidden" alt=""><span id="companyLogoFallback">企</span></div>
+<div class="company-heading"><div class="company-title-line"><h2 id="companyDisplayName">公司介紹</h2><span id="companyMarketBadge" class="market-badge">--</span></div>
+<div class="company-symbol-line"><span id="companySymbolText">--</span><span id="companyExchange">--</span></div>
+<div class="company-tags"><span id="companyIndustry">產業：--</span><span id="companyCountry">地區：--</span><span id="companyCompleteness">完整度：--</span></div></div></div>
+<div class="company-profile-actions"><a id="companyProfileSource" class="profile-source" target="_blank" rel="noopener noreferrer">載入中</a><button id="translateCompanyProfile" type="button">中文翻譯</button><button id="refreshCompanyProfile" type="button">↻ 更新資料</button><small id="translateStatus" class="action-status"></small></div>
+</div>
+<div class="company-completeness-bar"><span id="companyCompletenessBar"></span></div>
+<div class="company-tabs" id="companyTabs"><button class="active" data-tab="overview">公司資訊</button><button data-tab="products">產品服務</button><button data-tab="competitors">競爭對手</button><button data-tab="supply">供應鏈</button></div>
+<div class="company-tab-panel active" data-panel="overview"><p id="companyDescription">正在載入公司介紹。</p><div class="company-facts"><div><small>成立時間</small><b id="companyFounded">--</b></div><div><small>總部</small><b id="companyHeadquarters">--</b></div><div><small>董事長／CEO</small><b id="companyCeo">--</b></div><div><small>員工人數</small><b id="companyEmployees">--</b></div></div><a id="companyWebsite" class="company-website hidden" target="_blank" rel="noopener noreferrer">前往公司網站 ↗</a></div>
+<div class="company-tab-panel" data-panel="products"><div id="companyProducts" class="company-list-grid"></div></div>
+<div class="company-tab-panel" data-panel="competitors"><div id="companyCompetitors" class="company-list-grid"></div></div>
+<div class="company-tab-panel" data-panel="supply"><div id="companySupplyChain" class="company-list-grid"></div></div>
+<div id="companyDataNature" class="company-data-nature"></div>
+</section>
+<section class="lower ranking-layout">
+<article class="card ranking-card">
+<div class="card-head ranking-title-row">
+  <h2><span id="rankingMarketName">美股</span><span id="rankingTitle">漲幅排行榜前 15 名</span></h2>
+  <button id="refreshRanking">↻ 更新排行</button>
+</div>
+<div class="ranking-tabs" id="rankingTabs">
+  <button class="active" data-type="gainers">🔥 漲幅</button>
+  <button data-type="losers">📉 跌幅</button>
+  <button data-type="volume">📊 成交量</button>
+  <button data-type="value">💰 成交值</button>
+  <button data-type="hot">⭐ 熱門</button>
+</div>
+<div class="ranking-head">
+  <span>排名／公司</span><span>最新價</span><span>漲跌</span><span>漲跌幅</span><span>成交量／值</span>
+</div>
+<div id="rankingList"><p class="ranking-loading">排行榜載入中…</p></div>
+<div class="ranking-note" id="rankingSource">資料來源載入中</div>
+</article>
+<article class="card news-card"><div class="card-head news-head"><div><h2>最新新聞</h2><small id="newsMeta">0 則 · 尚未更新</small></div><div class="news-actions"><label class="auto-refresh-toggle"><input id="newsAutoRefresh" type="checkbox"> 自動更新</label><button id="refreshNews" type="button">↻ 更新</button></div></div><div class="news-toolbar"><div class="news-filters" id="newsFilters"><button class="active" data-filter="all">全部</button><button data-filter="official">官方公告</button><button data-filter="media">媒體新聞</button></div><div class="news-sort-wrap"><input id="newsSearch" type="search" placeholder="搜尋新聞關鍵字"><select id="newsSort"><option value="time">依時間排序</option><option value="source">依來源排序</option></select></div></div><div id="newsSummary" class="news-summary"></div><div id="newsList"></div></article>
+</section>
+<p class="disclaimer">資料僅供研究，不構成投資建議。免費 API 可能延遲、缺漏或受額度限制；頁面會顯示實際來源。</p></main>
+
+<script src="app.js?v=11.1.0"></script></body></html>

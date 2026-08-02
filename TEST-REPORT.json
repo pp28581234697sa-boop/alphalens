@@ -1,0 +1,16 @@
+{
+  "version": "11.1.0",
+  "checks": {
+    "syntax:server.js": true,
+    "syntax:app.js": true,
+    "syntax:core.js": true,
+    "cloud:bind-all": true,
+    "cloud:uses-port": true,
+    "cloud:render-yaml": true,
+    "cloud:health-check": true,
+    "security:no-env": true,
+    "security:gitignore-env": true,
+    "version:frontend": true,
+    "version:backend": true
+  }
+}

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: alphalens-pro
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: FINMIND_TOKEN
+        sync: false
+      - key: FUGLE_API_KEY
+        sync: false
+      - key: ALLTICK_TOKEN
+        sync: false
+      - key: FINNHUB_API_KEY
+        sync: false
+      - key: TWELVE_DATA_API_KEY
+        sync: false
+      - key: FMP_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

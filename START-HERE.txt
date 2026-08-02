@@ -1,0 +1,5 @@
+﻿1. 完整解壓縮 ZIP。
+2. 雙擊 start.cmd。
+3. 等待顯示 Backend is ready。
+4. 使用期間不要關閉 AlphaLens Server 視窗。
+5. 網址必須是 http://localhost:3000，不要直接開 index.html。
