@@ -1,24 +1,17 @@
 {
-  "name": "alphalens-pro-v11-1",
-  "version": "11.1.0",
+  "name": "alphalens-enterprise-v15",
+  "version": "15.1.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=20 <25"
-  },
+  "engines": {"node": ">=20 <25"},
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "check": "node --check server.js && node --check app.js && node --check core.js",
-    "test": "node --test tests/core.test.js tests/frontend-static.test.js"
+    "check": "node --check server.js && node --check app.js && node --check core.js && node --check lib/mini-express.js && node --check lib/jwt.js && node --check lib/env.js",
+    "test": "node --test tests/*.test.js",
+    "test:repeat": "node tests/repeat-test.mjs",
+    "test:e2e": "python tests/e2e_test.py",
+    "verify": "npm run check && npm test && npm run test:repeat && npm run test:e2e"
   },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^5.1.0",
-    "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^7.0.5",
-    "ws": "8.18.3"
-  }
+  "dependencies": {}
 }

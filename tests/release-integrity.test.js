@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const read=f=>fs.readFileSync(new URL(`../${f}`,import.meta.url),'utf8');
+const html=read('index.html'),js=read('app.js'),server=read('server.js'),pkg=JSON.parse(read('package.json'));
+test('release version is consistent',()=>{assert.equal(pkg.version,'15.1.0');assert.match(html,/v15\.1/);assert.match(html,/app\.js\?v=15\.1\.0/);assert.match(js,/APP_VERSION='15\.1\.0'/);assert.match(server,/v15\.1 running/)});
+test('HTML IDs are unique',()=>{const ids=[...html.matchAll(/id="([^"]+)"/g)].map(x=>x[1]);assert.equal(ids.length,new Set(ids).size)});
+test('PWA shell files exist and register',()=>{for(const f of ['manifest.webmanifest','sw.js'])assert.ok(fs.existsSync(new URL(`../${f}`,import.meta.url)));assert.match(html,/rel="manifest"/);assert.match(js,/serviceWorker\.register/)});
+test('server has native CORS and graceful shutdown',()=>{assert.doesNotMatch(server,/from 'cors'/);assert.match(server,/Access-Control-Allow-Origin/);assert.match(server,/async function shutdown/);assert.match(server,/SIGTERM/)});
+test('runtime has no mandatory third-party dependencies',()=>{assert.deepEqual(pkg.dependencies,{})});
+test('no inline event handlers or javascript URLs',()=>{assert.doesNotMatch(html,/\son(?:click|change|input|submit)=/i);assert.doesNotMatch(html,/javascript:/i)});

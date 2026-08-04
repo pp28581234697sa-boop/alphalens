@@ -1,0 +1,15 @@
+{
+  "name": "AlphaLens Enterprise v15.1",
+  "short_name": "AlphaLens",
+  "description": "全球股票即時行情、公司資料、AI 研究與投資組合儀表板",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#061118",
+  "theme_color": "#081512",
+  "lang": "zh-Hant",
+  "categories": ["finance", "business"],
+  "icons": []
+}

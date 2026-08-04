@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: alphalens-pro
+    name: alphalens-enterprise
     runtime: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm run check
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
@@ -11,6 +11,10 @@ services:
         value: 22.16.0
       - key: HOST
         value: 0.0.0.0
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SEC_USER_AGENT
+        sync: false
       - key: FINMIND_TOKEN
         sync: false
       - key: FUGLE_API_KEY
@@ -24,4 +28,6 @@ services:
       - key: FMP_API_KEY
         sync: false
       - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
         sync: false

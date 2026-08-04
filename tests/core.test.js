@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{marketFrom,cleanSymbol,symbolCandidates,tradingViewSymbol,normalizeRow,scoreFund}from'../core.js';
+test('market mapping',()=>{assert.equal(marketFrom('2330.TW',''),'TW');assert.equal(marketFrom('600519.SS',''),'CN');assert.equal(marketFrom('AAPL','NASDAQ'),'US')});
+test('symbol candidates',()=>{assert.deepEqual(symbolCandidates('TW','2330').slice(0,2),['2330.TW','2330.TWO']);assert.equal(symbolCandidates('CN','600519')[0],'600519.SS');assert.equal(symbolCandidates('CN','000858')[0],'000858.SZ')});
+test('TradingView mapping',()=>{assert.equal(tradingViewSymbol({market:'TW',symbol:'2330',exchange:'TWSE'}),'TWSE:2330');assert.equal(tradingViewSymbol({market:'CN',symbol:'600519'}),'SSE:600519');assert.equal(tradingViewSymbol({market:'US',symbol:'AAPL',exchange:'NASDAQ'}),'NASDAQ:AAPL')});
+test('normalization and scoring',()=>{const x=normalizeRow({symbol:'2330.TW',name:'TSMC',exchange:'Taiwan'});assert.equal(x.market,'TW');assert.equal(x.symbol,'2330');assert.ok(scoreFund({roe:25,growth:20,pe:20,debt:30}).total>=90)});

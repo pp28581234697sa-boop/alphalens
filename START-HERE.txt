@@ -1,5 +1,8 @@
-﻿1. 完整解壓縮 ZIP。
-2. 雙擊 start.cmd。
-3. 等待顯示 Backend is ready。
-4. 使用期間不要關閉 AlphaLens Server 視窗。
-5. 網址必須是 http://localhost:3000，不要直接開 index.html。
+AlphaLens Enterprise v15.1
+
+Windows：雙擊 start.cmd
+其他系統：在此資料夾執行 npm start
+網址：http://127.0.0.1:3000
+
+首次開啟若仍顯示舊版，請按 Ctrl + Shift + R。
+API 金鑰可填入 .env；未設定時仍會使用公開來源與本機分析備援。

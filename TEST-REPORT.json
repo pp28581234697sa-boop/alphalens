@@ -1,16 +1,55 @@
 {
-  "version": "11.1.0",
-  "checks": {
-    "syntax:server.js": true,
-    "syntax:app.js": true,
-    "syntax:core.js": true,
-    "cloud:bind-all": true,
-    "cloud:uses-port": true,
-    "cloud:render-yaml": true,
-    "cloud:health-check": true,
-    "security:no-env": true,
-    "security:gitignore-env": true,
-    "version:frontend": true,
-    "version:backend": true
-  }
+  "version": "15.1.0",
+  "generatedAt": "2026-08-03T08:39:28Z",
+  "result": "PASS",
+  "environment": {
+    "node": "v22.16.0",
+    "npm": "10.9.2",
+    "python": "3.13.5",
+    "chromium": "144.0.7559.96"
+  },
+  "tests": {
+    "syntax": {"passed": 6, "failed": 0},
+    "main": {"passed": 49, "failed": 0},
+    "repeatRegression": {"rounds": 5, "passed": 200, "failed": 0},
+    "httpSseIntegration": {"passed": 9, "failed": 0},
+    "browser": {
+      "desktop": "PASS",
+      "mobile390x844": "PASS",
+      "rapidMarketSwitch": "PASS",
+      "horizontalOverflow": "PASS",
+      "pageErrors": 0
+    },
+    "stress": {
+      "concurrentSnapshots": 20,
+      "concurrentRankingTypes": 3,
+      "result": "PASS"
+    },
+    "sse": {
+      "ready": "PASS",
+      "heartbeatPing": "PASS",
+      "quote": "PASS",
+      "slowClientBufferGuard": "STATIC_AND_INTEGRATION_PASS"
+    },
+    "degradedMode": {
+      "externalProvidersUnavailable": "PASS",
+      "demoOrDerivedDataClearlyMarked": true,
+      "pageCrash": false
+    }
+  },
+  "fixedRegressionClasses": [
+    "stale asynchronous results overwriting current stock",
+    "aborted requests falsely marking backend offline",
+    "overlapping dashboard, news and portfolio refresh loops",
+    "SSE reconnect loops and unbounded slow-client buffering",
+    "snapshot blocked by one slow external source",
+    "missing numeric values converted to zero",
+    "non-canonical modified JWT signatures accepted",
+    "AI evidence replaced by unverified model output"
+  ],
+  "limitations": [
+    "Third-party availability, rate limits and response formats can change after release.",
+    "System notifications require HTTPS or localhost and user permission.",
+    "Free data sources may be delayed; the UI labels freshness and fallback status."
+  ]
 }

@@ -1,0 +1,4 @@
+const assert=require('node:assert/strict');
+function cleanSymbol(s=''){return String(s).toUpperCase().replace(/\.(TW|TWO|SS|SZ)$/,'')}
+function yahooSymbol(market,symbol,exchange=''){const s=cleanSymbol(symbol),e=String(exchange||'').toUpperCase();if(market==='TW')return `${s}.${e.includes('TPEX')||e.includes('OTC')?'TWO':'TW'}`;if(market==='CN'){if(/^6|^68/.test(s)||e.includes('SSE')||e.includes('SHANGHAI'))return `${s}.SS`;if(/^8|^4/.test(s)||e.includes('BSE')||e.includes('BEIJING'))return `${s}.BJ`;return `${s}.SZ`;}return s;}
+assert.equal(yahooSymbol('TW','2330','TWSE'),'2330.TW');assert.equal(yahooSymbol('TW','6488','TPEX'),'6488.TWO');assert.equal(yahooSymbol('CN','600519','SSE'),'600519.SS');assert.equal(yahooSymbol('CN','300308','SZSE'),'300308.SZ');assert.equal(yahooSymbol('CN','830799','BSE'),'830799.BJ');console.log('5/5 quote symbol tests passed');
